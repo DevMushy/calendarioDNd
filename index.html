@@ -404,11 +404,17 @@
       });
     }
 
-    function renderStats() {
-      els.peopleCount.textContent = state.people.length;
-      els.completeCount.textContent = getCompletedDays().length;
-      els.completionRate.textContent = `${getCompletionRate()}%`;
-    }
+function renderStats() {
+  if (els.peopleCount) {
+    els.peopleCount.textContent = state.people.length;
+  }
+  if (els.completeCount) {
+    els.completeCount.textContent = getCompletedDays().length;
+  }
+  if (els.completionRate) {
+    els.completionRate.textContent = `${getCompletionRate()}%`;
+  }
+}
 
     function render() {
       renderPeople();
@@ -517,13 +523,27 @@
       }
     }
 
-    els.personSelect.addEventListener("change", (e) => setSelectedPerson(e.target.value));
-    els.addPersonBtn.addEventListener("click", () => addPerson());
-    els.newPerson.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") addPerson();
-    });
-    els.resetBtn.addEventListener("click", () => resetVotes());
-    els.exportBtn.addEventListener("click", exportJson);
+if (els.personSelect) {
+  els.personSelect.addEventListener("change", (e) => setSelectedPerson(e.target.value));
+}
+
+if (els.addPersonBtn) {
+  els.addPersonBtn.addEventListener("click", () => addPerson());
+}
+
+if (els.newPerson) {
+  els.newPerson.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") addPerson();
+  });
+}
+
+if (els.resetBtn) {
+  els.resetBtn.addEventListener("click", () => resetVotes());
+}
+
+if (els.exportBtn) {
+  els.exportBtn.addEventListener("click", exportJson);
+}
 
     render();
     initFirebase();
