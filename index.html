@@ -157,13 +157,7 @@
 <body>
   <div class="container">
     <section class="hero">
-      <div>
-        <div class="pill">🔥 Votazione condivisa con Firebase</div>
-        <h1>Calendario voti chiaro e intuitivo</h1>
-        <p class="subtitle">Tutti vedono gli stessi voti in tempo reale. Pubblica la pagina su GitHub Pages e collega Firebase per condividere giorni, persone e votazioni.</p>
-      </div>
       <div class="stats">
-        <div class="stat dark"><small>Persone</small><strong id="peopleCount">0</strong></div>
         <div class="stat green"><small>Giorni completi</small><strong id="completeCount">0</strong></div>
         <div class="stat blue"><small>Avanzamento</small><strong id="completionRate">0%</strong></div>
       </div>
@@ -178,18 +172,18 @@
             <select id="personSelect"></select>
           </div>
 
-          <div style="margin-top:16px;">
-            <label for="newPerson">Aggiungi persona</label>
-            <div class="row">
-              <input id="newPerson" type="text" placeholder="Nome persona" />
-              <button class="btn-primary" id="addPersonBtn">Aggiungi</button>
-            </div>
-          </div>
+<div style="margin-top:16px; display:none;">
+  <label for="newPerson">Aggiungi persona</label>
+  <div class="row">
+    <input id="newPerson" type="text" placeholder="Nome persona" />
+    <button class="btn-primary" id="addPersonBtn">Aggiungi</button>
+  </div>
+</div>
 
           <div class="people-list" id="peopleChips"></div>
 
           <div class="row" style="margin-top:16px;">
-            <button class="btn-outline" id="resetBtn">Azzera voti</button>
+            <!-- <button class="btn-outline" id="resetBtn">Azzera voti</button> -->
             <button class="btn-outline" id="exportBtn">Esporta JSON</button>
           </div>
 
