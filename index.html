@@ -6,7 +6,6 @@
   <title>Calendario Voti</title>
   <style>
     :root {
-      --bg: #f3f6fb;
       --card: rgba(255,255,255,0.9);
       --text: #18212f;
       --muted: #667085;
@@ -14,8 +13,8 @@
       --primary: #2563eb;
       --primary-soft: #dbeafe;
       --success: #16a34a;
-      --success-soft: #dcfce7;
       --warning-soft: #fef3c7;
+      --danger-soft: #fee2e2;
       --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
       --radius: 24px;
     }
@@ -29,11 +28,7 @@
       color: var(--text);
     }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 24px;
-    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
 
     .hero {
       background: var(--card);
@@ -59,19 +54,8 @@
       font-weight: 600;
     }
 
-    h1 {
-      margin: 14px 0 8px;
-      font-size: 40px;
-      line-height: 1.05;
-    }
-
-    .subtitle {
-      margin: 0;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.6;
-      max-width: 700px;
-    }
+    h1 { margin: 14px 0 8px; font-size: 40px; line-height: 1.05; }
+    .subtitle { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.6; max-width: 700px; }
 
     .stats {
       display: grid;
@@ -86,289 +70,81 @@
       color: white;
       box-shadow: var(--shadow);
     }
-
-    .stat small {
-      opacity: .85;
-      display: block;
-      margin-bottom: 10px;
-      font-size: 13px;
-    }
-
-    .stat strong {
-      font-size: 34px;
-      line-height: 1;
-    }
-
+    .stat small { opacity: .85; display: block; margin-bottom: 10px; font-size: 13px; }
+    .stat strong { font-size: 34px; line-height: 1; }
     .stat.dark { background: #0f172a; }
     .stat.green { background: #22c55e; }
     .stat.blue { background: #38bdf8; }
 
-    .layout {
-      margin-top: 24px;
-      display: grid;
-      grid-template-columns: 340px 1fr;
-      gap: 24px;
-    }
+    .layout { margin-top: 24px; display: grid; grid-template-columns: 340px 1fr; gap: 24px; }
+    .card { background: white; border-radius: var(--radius); box-shadow: var(--shadow); padding: 22px; }
+    .card h2 { margin: 0 0 18px; font-size: 20px; }
 
-    .card {
-      background: white;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 22px;
-    }
-
-    .card h2 {
-      margin: 0 0 18px;
-      font-size: 20px;
-    }
-
-    label {
-      display: block;
-      font-size: 14px;
-      font-weight: 600;
-      color: #475467;
-      margin-bottom: 8px;
-    }
-
-    select, input, button {
-      font: inherit;
-    }
-
+    label { display: block; font-size: 14px; font-weight: 600; color: #475467; margin-bottom: 8px; }
+    select, input, button { font: inherit; }
     select, input {
-      width: 100%;
-      height: 48px;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      padding: 0 14px;
-      background: white;
+      width: 100%; height: 48px; border-radius: 16px; border: 1px solid var(--border);
+      padding: 0 14px; background: white;
     }
 
-    .row {
-      display: flex;
-      gap: 10px;
-    }
-
+    .row { display: flex; gap: 10px; }
     .row input { flex: 1; }
 
     button {
-      border: none;
-      border-radius: 16px;
-      height: 48px;
-      padding: 0 18px;
-      cursor: pointer;
-      transition: .2s ease;
+      border: none; border-radius: 16px; height: 48px; padding: 0 18px; cursor: pointer; transition: .2s ease;
     }
-
-    .btn-primary {
-      background: var(--primary);
-      color: white;
-    }
-
+    .btn-primary { background: var(--primary); color: white; }
     .btn-primary:hover { filter: brightness(.95); }
-
-    .btn-outline {
-      background: white;
-      border: 1px solid var(--border);
-      color: var(--text);
-    }
-
+    .btn-outline { background: white; border: 1px solid var(--border); color: var(--text); }
     .btn-outline:hover { background: #f8fafc; }
+    .btn-primary:disabled, .btn-outline:disabled { opacity: .5; cursor: not-allowed; }
 
-    .btn-primary:disabled,
-    .btn-outline:disabled {
-      opacity: .5;
-      cursor: not-allowed;
+    .sync-box {
+      margin-top: 16px; border-radius: 18px; padding: 14px; font-size: 14px; line-height: 1.5;
     }
+    .sync-box.info { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+    .sync-box.warn { background: var(--warning-soft); color: #92400e; border: 1px solid #fcd34d; }
+    .sync-box.error { background: var(--danger-soft); color: #991b1b; border: 1px solid #fca5a5; }
+    .sync-box.ok { background: #ecfdf3; color: #166534; border: 1px solid #86efac; }
 
-    .people-list {
-      margin-top: 16px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
+    .people-list { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 10px; }
     .person-chip {
-      background: #f8fafc;
-      color: #334155;
-      border: 1px solid #e2e8f0;
-      border-radius: 999px;
-      padding: 10px 14px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
+      background: #f8fafc; color: #334155; border: 1px solid #e2e8f0; border-radius: 999px;
+      padding: 10px 14px; font-size: 14px; font-weight: 600; cursor: pointer;
     }
-
-    .person-chip.active {
-      background: var(--primary);
-      color: white;
-      border-color: var(--primary);
-    }
-
+    .person-chip.active { background: var(--primary); color: white; border-color: var(--primary); }
     .stack { display: grid; gap: 24px; }
+    .completed-box { background: linear-gradient(135deg, #ecfdf3, white); }
+    .completed-list { display: grid; gap: 12px; }
+    .completed-item { border: 1px solid #bbf7d0; background: white; border-radius: 20px; padding: 16px; }
+    .completed-item small { color: var(--success); text-transform: uppercase; font-weight: 700; letter-spacing: .04em; }
+    .completed-item strong { display: block; margin-top: 6px; font-size: 16px; text-transform: capitalize; }
+    .empty-state { border: 1px dashed #cbd5e1; border-radius: 20px; background: white; padding: 18px; color: var(--muted); font-size: 14px; }
+    .alert { margin-bottom: 18px; background: var(--warning-soft); color: #92400e; border: 1px solid #fcd34d; border-radius: 18px; padding: 14px 16px; font-size: 14px; }
 
-    .completed-box {
-      background: linear-gradient(135deg, #ecfdf3, white);
-    }
-
-    .completed-list {
-      display: grid;
-      gap: 12px;
-    }
-
-    .completed-item {
-      border: 1px solid #bbf7d0;
-      background: white;
-      border-radius: 20px;
-      padding: 16px;
-    }
-
-    .completed-item small {
-      color: var(--success);
-      text-transform: uppercase;
-      font-weight: 700;
-      letter-spacing: .04em;
-    }
-
-    .completed-item strong {
-      display: block;
-      margin-top: 6px;
-      font-size: 16px;
-      text-transform: capitalize;
-    }
-
-    .empty-state {
-      border: 1px dashed #cbd5e1;
-      border-radius: 20px;
-      background: white;
-      padding: 18px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .alert {
-      margin-bottom: 18px;
-      background: var(--warning-soft);
-      color: #92400e;
-      border: 1px solid #fcd34d;
-      border-radius: 18px;
-      padding: 14px 16px;
-      font-size: 14px;
-    }
-
-    .calendar-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .day-card {
-      border: 1px solid #e2e8f0;
-      border-radius: 24px;
-      padding: 18px;
-      background: white;
-      transition: .2s ease;
-    }
-
-    .day-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06);
-    }
-
-    .day-card.voted {
-      background: linear-gradient(135deg, #eff6ff, white);
-      border-color: #bfdbfe;
-    }
-
-    .day-card.complete {
-      background: linear-gradient(135deg, #ecfdf3, white);
-      border-color: #bbf7d0;
-    }
-
-    .day-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      align-items: start;
-      margin-bottom: 16px;
-    }
-
-    .week-label {
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      color: #64748b;
-    }
-
-    .day-title {
-      margin-top: 6px;
-      font-size: 19px;
-      font-weight: 700;
-      text-transform: capitalize;
-    }
-
-    .status {
-      border-radius: 999px;
-      padding: 7px 12px;
-      font-size: 12px;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
+    .calendar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .day-card { border: 1px solid #e2e8f0; border-radius: 24px; padding: 18px; background: white; transition: .2s ease; }
+    .day-card:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06); }
+    .day-card.voted { background: linear-gradient(135deg, #eff6ff, white); border-color: #bfdbfe; }
+    .day-card.complete { background: linear-gradient(135deg, #ecfdf3, white); border-color: #bbf7d0; }
+    .day-top { display: flex; justify-content: space-between; gap: 10px; align-items: start; margin-bottom: 16px; }
+    .week-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #64748b; }
+    .day-title { margin-top: 6px; font-size: 19px; font-weight: 700; text-transform: capitalize; }
+    .status { border-radius: 999px; padding: 7px 12px; font-size: 12px; font-weight: 700; white-space: nowrap; }
     .status.todo { background: #f1f5f9; color: #475569; }
     .status.voted { background: #dbeafe; color: #1d4ed8; }
     .status.complete { background: #dcfce7; color: #15803d; }
-
-    .progress-head {
-      display: flex;
-      justify-content: space-between;
-      font-size: 14px;
-      color: #475467;
-      margin-bottom: 8px;
-    }
-
-    .progress {
-      height: 10px;
-      border-radius: 999px;
-      background: #e2e8f0;
-      overflow: hidden;
-    }
-
-    .progress-bar {
-      height: 100%;
-      background: #0f172a;
-      border-radius: inherit;
-    }
-
-    .voters-box {
-      margin-top: 14px;
-      background: #f8fafc;
-      border-radius: 18px;
-      padding: 14px;
-      font-size: 14px;
-      color: #475467;
-      min-height: 74px;
-      line-height: 1.5;
-    }
-
-    .day-actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 14px;
-    }
-
+    .progress-head { display: flex; justify-content: space-between; font-size: 14px; color: #475467; margin-bottom: 8px; }
+    .progress { height: 10px; border-radius: 999px; background: #e2e8f0; overflow: hidden; }
+    .progress-bar { height: 100%; background: #0f172a; border-radius: inherit; }
+    .voters-box { margin-top: 14px; background: #f8fafc; border-radius: 18px; padding: 14px; font-size: 14px; color: #475467; min-height: 74px; line-height: 1.5; }
+    .day-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
     .muted { color: var(--muted); }
-
-    .hidden-section {
-      display: none;
-    }
 
     @media (max-width: 1024px) {
       .hero, .layout { grid-template-columns: 1fr; }
       .calendar-grid { grid-template-columns: repeat(2, 1fr); }
     }
-
     @media (max-width: 700px) {
       .container { padding: 16px; }
       h1 { font-size: 30px; }
@@ -380,17 +156,29 @@
 </head>
 <body>
   <div class="container">
+    <section class="hero">
+      <div>
+        <div class="pill">🔥 Votazione condivisa con Firebase</div>
+        <h1>Calendario voti chiaro e intuitivo</h1>
+        <p class="subtitle">Tutti vedono gli stessi voti in tempo reale. Pubblica la pagina su GitHub Pages e collega Firebase per condividere giorni, persone e votazioni.</p>
+      </div>
+      <div class="stats">
+        <div class="stat dark"><small>Persone</small><strong id="peopleCount">0</strong></div>
+        <div class="stat green"><small>Giorni completi</small><strong id="completeCount">0</strong></div>
+        <div class="stat blue"><small>Avanzamento</small><strong id="completionRate">0%</strong></div>
+      </div>
+    </section>
+
     <div class="layout">
       <div class="stack">
         <section class="card">
           <h2>Chi sta votando</h2>
-
           <div>
             <label for="personSelect">Seleziona il tuo nome</label>
             <select id="personSelect"></select>
           </div>
 
-          <div class="hidden-section" style="margin-top:16px;">
+          <div style="margin-top:16px;">
             <label for="newPerson">Aggiungi persona</label>
             <div class="row">
               <input id="newPerson" type="text" placeholder="Nome persona" />
@@ -401,8 +189,11 @@
           <div class="people-list" id="peopleChips"></div>
 
           <div class="row" style="margin-top:16px;">
+            <button class="btn-outline" id="resetBtn">Azzera voti</button>
             <button class="btn-outline" id="exportBtn">Esporta JSON</button>
           </div>
+
+          <div id="syncBox" class="sync-box info" style="display:none;"></div>
         </section>
 
         <section class="card completed-box">
@@ -419,9 +210,32 @@
     </div>
   </div>
 
-  <script>
-    const STORAGE_KEY = "simple-week-vote-app-html";
-    const DEFAULT_PEOPLE = ["Cocco", "Giulio", "Mirko", "Andre", "Nihooolass", "Anci"];
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+    import {
+      getFirestore,
+      doc,
+      onSnapshot,
+      setDoc,
+      updateDoc,
+      arrayUnion,
+      arrayRemove,
+      serverTimestamp,
+      getDoc
+    } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "INSERISCI_API_KEY",
+      authDomain: "INSERISCI_AUTH_DOMAIN",
+      projectId: "INSERISCI_PROJECT_ID",
+      storageBucket: "INSERISCI_STORAGE_BUCKET",
+      messagingSenderId: "INSERISCI_MESSAGING_SENDER_ID",
+      appId: "INSERISCI_APP_ID"
+    };
+
+    const ROOM_ID = "calendario-voti";
+    const LOCAL_PERSON_KEY = "calendar-vote-selected-person";
+    const DEFAULT_PEOPLE = ["Luca", "Sara", "Marco", "Giulia"];
 
     function formatDateKey(date) {
       const y = date.getFullYear();
@@ -431,11 +245,7 @@
     }
 
     function formatDateLabel(date) {
-      return new Intl.DateTimeFormat("it-IT", {
-        weekday: "long",
-        day: "numeric",
-        month: "short"
-      }).format(date);
+      return new Intl.DateTimeFormat("it-IT", { weekday: "long", day: "numeric", month: "short" }).format(date);
     }
 
     function startOfWeek(date) {
@@ -460,40 +270,7 @@
       });
     }
 
-    function loadState() {
-      const raw = localStorage.getItem(STORAGE_KEY);
-
-      if (!raw) {
-        return {
-          selectedPerson: "",
-          people: [...DEFAULT_PEOPLE],
-          votes: {}
-        };
-      }
-
-      try {
-        const parsed = JSON.parse(raw);
-        return {
-          selectedPerson: parsed.selectedPerson || "",
-          people: Array.isArray(parsed.people) && parsed.people.length
-            ? parsed.people
-            : [...DEFAULT_PEOPLE],
-          votes: parsed.votes && typeof parsed.votes === "object"
-            ? parsed.votes
-            : {}
-        };
-      } catch {
-        return {
-          selectedPerson: "",
-          people: [...DEFAULT_PEOPLE],
-          votes: {}
-        };
-      }
-    }
-
     const days = build14Days();
-    let state = loadState();
-
     const els = {
       personSelect: document.getElementById("personSelect"),
       newPerson: document.getElementById("newPerson"),
@@ -506,11 +283,25 @@
       selectAlert: document.getElementById("selectAlert"),
       peopleCount: document.getElementById("peopleCount"),
       completeCount: document.getElementById("completeCount"),
-      completionRate: document.getElementById("completionRate")
+      completionRate: document.getElementById("completionRate"),
+      syncBox: document.getElementById("syncBox")
     };
 
-    function saveState() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state, null, 2));
+    let db = null;
+    let state = {
+      selectedPerson: localStorage.getItem(LOCAL_PERSON_KEY) || "",
+      people: [...DEFAULT_PEOPLE],
+      votes: {}
+    };
+
+    function showSync(message, type = "info") {
+      els.syncBox.style.display = "block";
+      els.syncBox.className = `sync-box ${type}`;
+      els.syncBox.textContent = message;
+    }
+
+    function isFirebaseConfigured() {
+      return Object.values(firebaseConfig).every(value => value && !String(value).startsWith("INSERISCI_"));
     }
 
     function getCompletedDays() {
@@ -523,83 +314,18 @@
     function getCompletionRate() {
       const totalPossible = days.length * state.people.length;
       const totalActual = Object.values(state.votes).reduce((sum, arr) => sum + arr.length, 0);
-
       if (!totalPossible) return 0;
       return Math.round((totalActual / totalPossible) * 100);
     }
 
     function setSelectedPerson(name) {
       state.selectedPerson = name;
-      saveState();
-      render();
-    }
-
-    function addPerson() {
-      if (!els.newPerson) return;
-
-      const name = els.newPerson.value.trim();
-      if (!name) return;
-
-      if (state.people.some(p => p.toLowerCase() === name.toLowerCase())) {
-        els.newPerson.value = "";
-        return;
-      }
-
-      state.people.push(name);
-
-      if (!state.selectedPerson) {
-        state.selectedPerson = name;
-      }
-
-      els.newPerson.value = "";
-      saveState();
-      render();
-    }
-
-    function vote(dayKey) {
-      if (!state.selectedPerson) return;
-
-      const current = state.votes[dayKey] || [];
-      if (current.includes(state.selectedPerson)) return;
-
-      state.votes[dayKey] = [...current, state.selectedPerson];
-      saveState();
-      render();
-    }
-
-    function removeVote(dayKey) {
-      if (!state.selectedPerson) return;
-
-      const current = state.votes[dayKey] || [];
-      state.votes[dayKey] = current.filter(name => name !== state.selectedPerson);
-      saveState();
-      render();
-    }
-
-    function exportJson() {
-      const blob = new Blob([JSON.stringify(state, null, 2)], {
-        type: "application/json"
-      });
-
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "voti-calendario.json";
-      a.click();
-      URL.revokeObjectURL(url);
-    }
-
-    function resetVotes() {
-      state.votes = {};
-      saveState();
+      localStorage.setItem(LOCAL_PERSON_KEY, name);
       render();
     }
 
     function renderPeople() {
-      if (!els.personSelect || !els.peopleChips) return;
-
       els.personSelect.innerHTML = "";
-
       const placeholder = document.createElement("option");
       placeholder.value = "";
       placeholder.textContent = "Scegli una persona";
@@ -614,45 +340,35 @@
       });
 
       els.peopleChips.innerHTML = "";
-
       state.people.forEach(person => {
         const chip = document.createElement("button");
         chip.className = `person-chip ${state.selectedPerson === person ? "active" : ""}`;
         chip.textContent = person;
-        chip.type = "button";
         chip.onclick = () => setSelectedPerson(person);
         els.peopleChips.appendChild(chip);
       });
     }
 
     function renderCompletedDays() {
-      if (!els.completedList) return;
-
       const completed = getCompletedDays();
       els.completedList.innerHTML = "";
-
       if (!completed.length) {
         els.completedList.innerHTML = '<div class="empty-state">Nessun giorno è ancora completo.</div>';
         return;
       }
-
       completed.forEach(day => {
         const item = document.createElement("div");
         item.className = "completed-item";
         item.innerHTML = `
           <small>Completato</small>
           <strong>${day.label}</strong>
-          <div class="muted" style="margin-top:8px; font-size:14px;">
-            ${state.people.length}/${state.people.length} persone hanno votato
-          </div>
+          <div class="muted" style="margin-top:8px; font-size:14px;">${state.people.length}/${state.people.length} persone hanno votato</div>
         `;
         els.completedList.appendChild(item);
       });
     }
 
     function renderCalendar() {
-      if (!els.calendarGrid || !els.selectAlert) return;
-
       els.calendarGrid.innerHTML = "";
       els.selectAlert.style.display = state.selectedPerson ? "none" : "block";
 
@@ -660,13 +376,10 @@
         const voters = state.votes[day.key] || [];
         const hasVoted = state.selectedPerson ? voters.includes(state.selectedPerson) : false;
         const isComplete = state.people.length > 0 && voters.length === state.people.length;
-        const progress = state.people.length
-          ? Math.min((voters.length / state.people.length) * 100, 100)
-          : 0;
+        const progress = state.people.length ? Math.min((voters.length / state.people.length) * 100, 100) : 0;
 
         const card = document.createElement("div");
         card.className = `day-card ${isComplete ? "complete" : hasVoted ? "voted" : ""}`;
-
         const statusClass = isComplete ? "complete" : hasVoted ? "voted" : "todo";
         const statusText = isComplete ? "Completo" : hasVoted ? "Votato" : "Da votare";
 
@@ -678,53 +391,28 @@
             </div>
             <div class="status ${statusClass}">${statusText}</div>
           </div>
-
           <div class="progress-head">
             <span>Avanzamento</span>
             <strong>${voters.length}/${state.people.length}</strong>
           </div>
-
-          <div class="progress">
-            <div class="progress-bar" style="width:${progress}%"></div>
-          </div>
-
-          <div class="voters-box">
-            <strong>Hanno votato:</strong><br>
-            ${voters.length ? voters.join(", ") : "nessuno"}
-          </div>
-
+          <div class="progress"><div class="progress-bar" style="width:${progress}%"></div></div>
+          <div class="voters-box"><strong>Hanno votato:</strong><br>${voters.length ? voters.join(", ") : "nessuno"}</div>
           <div class="day-actions">
-            <button class="btn-primary vote-btn" ${!state.selectedPerson || hasVoted ? "disabled" : ""}>
-              ${hasVoted ? "Già votato" : "Vota"}
-            </button>
-            <button class="btn-outline remove-btn" ${!state.selectedPerson || !hasVoted ? "disabled" : ""}>
-              Rimuovi
-            </button>
+            <button class="btn-primary vote-btn" ${!state.selectedPerson || hasVoted ? "disabled" : ""}>${hasVoted ? "Già votato" : "Vota"}</button>
+            <button class="btn-outline remove-btn" ${!state.selectedPerson || !hasVoted ? "disabled" : ""}>Rimuovi</button>
           </div>
         `;
 
-        const voteBtn = card.querySelector(".vote-btn");
-        const removeBtn = card.querySelector(".remove-btn");
-
-        if (voteBtn) voteBtn.onclick = () => vote(day.key);
-        if (removeBtn) removeBtn.onclick = () => removeVote(day.key);
-
+        card.querySelector(".vote-btn").onclick = () => vote(day.key);
+        card.querySelector(".remove-btn").onclick = () => removeVote(day.key);
         els.calendarGrid.appendChild(card);
       });
     }
 
     function renderStats() {
-      if (els.peopleCount) {
-        els.peopleCount.textContent = state.people.length;
-      }
-
-      if (els.completeCount) {
-        els.completeCount.textContent = getCompletedDays().length;
-      }
-
-      if (els.completionRate) {
-        els.completionRate.textContent = `${getCompletionRate()}%`;
-      }
+      els.peopleCount.textContent = state.people.length;
+      els.completeCount.textContent = getCompletedDays().length;
+      els.completionRate.textContent = `${getCompletionRate()}%`;
     }
 
     function render() {
@@ -734,15 +422,116 @@
       renderStats();
     }
 
-    els.personSelect?.addEventListener("change", e => setSelectedPerson(e.target.value));
-    els.addPersonBtn?.addEventListener("click", addPerson);
-    els.newPerson?.addEventListener("keydown", e => {
+    async function ensureRoomExists() {
+      const roomRef = doc(db, "rooms", ROOM_ID);
+      const snap = await getDoc(roomRef);
+      if (!snap.exists()) {
+        await setDoc(roomRef, {
+          people: DEFAULT_PEOPLE,
+          votes: {},
+          updatedAt: serverTimestamp()
+        });
+      }
+    }
+
+    async function addPerson() {
+      const name = els.newPerson.value.trim();
+      if (!name) return;
+      if (state.people.some(p => p.toLowerCase() === name.toLowerCase())) {
+        els.newPerson.value = "";
+        return;
+      }
+      const nextPeople = [...state.people, name];
+      await updateDoc(doc(db, "rooms", ROOM_ID), {
+        people: nextPeople,
+        updatedAt: serverTimestamp()
+      });
+      if (!state.selectedPerson) setSelectedPerson(name);
+      els.newPerson.value = "";
+    }
+
+    async function vote(dayKey) {
+      if (!state.selectedPerson) return;
+      await updateDoc(doc(db, "rooms", ROOM_ID), {
+        [`votes.${dayKey}`]: arrayUnion(state.selectedPerson),
+        updatedAt: serverTimestamp()
+      });
+    }
+
+    async function removeVote(dayKey) {
+      if (!state.selectedPerson) return;
+      await updateDoc(doc(db, "rooms", ROOM_ID), {
+        [`votes.${dayKey}`]: arrayRemove(state.selectedPerson),
+        updatedAt: serverTimestamp()
+      });
+    }
+
+    function exportJson() {
+      const sharedData = {
+        people: state.people,
+        votes: state.votes,
+        roomId: ROOM_ID,
+        exportedAt: new Date().toISOString()
+      };
+      const blob = new Blob([JSON.stringify(sharedData, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "voti-calendario-condivisi.json";
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    async function resetVotes() {
+      await updateDoc(doc(db, "rooms", ROOM_ID), {
+        votes: {},
+        updatedAt: serverTimestamp()
+      });
+    }
+
+    async function initFirebase() {
+      if (!isFirebaseConfigured()) {
+        showSync("Inserisci i dati del tuo progetto Firebase dentro firebaseConfig per attivare la sincronizzazione condivisa.", "warn");
+        render();
+        return;
+      }
+
+      try {
+        const app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+        await ensureRoomExists();
+
+        onSnapshot(doc(db, "rooms", ROOM_ID), (snapshot) => {
+          const data = snapshot.data() || {};
+          state.people = Array.isArray(data.people) && data.people.length ? data.people : [...DEFAULT_PEOPLE];
+          state.votes = data.votes && typeof data.votes === "object" ? data.votes : {};
+          if (state.selectedPerson && !state.people.includes(state.selectedPerson)) {
+            state.selectedPerson = "";
+            localStorage.removeItem(LOCAL_PERSON_KEY);
+          }
+          showSync("Sincronizzato con Firebase: tutti vedono gli aggiornamenti condivisi.", "ok");
+          render();
+        }, (error) => {
+          console.error(error);
+          showSync("Errore di sincronizzazione con Firebase. Controlla configurazione e regole Firestore.", "error");
+        });
+      } catch (error) {
+        console.error(error);
+        showSync("Impossibile inizializzare Firebase. Verifica firebaseConfig e che Firestore sia attivo.", "error");
+        render();
+      }
+    }
+
+    els.personSelect.addEventListener("change", (e) => setSelectedPerson(e.target.value));
+    els.addPersonBtn.addEventListener("click", () => addPerson());
+    els.newPerson.addEventListener("keydown", (e) => {
       if (e.key === "Enter") addPerson();
     });
-    els.resetBtn?.addEventListener("click", resetVotes);
-    els.exportBtn?.addEventListener("click", exportJson);
+    els.resetBtn.addEventListener("click", () => resetVotes());
+    els.exportBtn.addEventListener("click", exportJson);
 
     render();
+    initFirebase();
   </script>
 </body>
 </html>
